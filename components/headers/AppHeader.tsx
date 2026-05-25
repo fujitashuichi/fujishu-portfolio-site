@@ -3,7 +3,7 @@ import Link from "next/link";
 export function AppHeader() {
   return (
     <header className="h-fit text-center bg-olive-100">
-      <h1 className="p-5 text-4xl text-blue-800 font-bold italic">
+      <h1 className="relative overflow-hidden p-5 text-4xl text-blue-800 font-serif font-bold italic">
         {"Fujita Shuichi's Portfolios"}
       </h1>
       <ul className="flex justify-around text-center w-full h-10 border-t border-olive-300">
