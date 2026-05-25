@@ -4,20 +4,25 @@ import { fetchZennArticle } from './fetchZennArticle';
 
 export function Section_zenn({ urls }: { urls: string[] }) {
   return (
-    <section className="my-0 mx-auto">
-      <ul className="grid-rows-2">
+    <section className="my-0 mx-auto px-4">
+      <p className="text-[16px]">※ api.microlink.io から取得しています。これにはレート制限があり、取得に失敗することがあります</p>
+      <ul className="flex flex-col py-8">
         {
           urls.map(async (url, idx) => {
+            setTimeout(() => {}, 200);
             const result = await fetchZennArticle(url);
 
             if (!result.success) {
-              return "取得失敗"
+              return (<>
+                <a href={url} />
+              </>)
             }
 
             const data = result.data;
 
             return (
-              <li key={idx} className="mb-2">
+              <li key={idx} className="mb-4 mx-auto">
+                <p className="text-[16px]">{idx + 1}.</p>
                 <a href={url} target="_blank" rel="noopener noreferrer" className="text-inherit">
                   <div className="border text-gray-500 rounded-2xl p-4 max-w-150 gap-4 bg-white font-serif">
 
@@ -34,12 +39,12 @@ export function Section_zenn({ urls }: { urls: string[] }) {
                       </h3>
                     </div>
 
-                    <p className="text-sm p-4 color: #666; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                    <p className="text-sm p-4">
                       {data.description ?? "詳細なし"}...
                     </p>
 
                     {/* og-image */}
-                    <div className="h-fit border-radius: 4px; overflow: hidden; flex-shrink: 0;">
+                    <div className="h-fit rounded-xl overflow-hidden">
                       <Image
                         src={data.og_imageUrl ?? ""}
                         alt="記事のサムネイル"
