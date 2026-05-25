@@ -23,8 +23,7 @@ type Data = {
   logoUrl: string | null,
   description: string | null,
   author: string | null,
-  publisher: string | null,
-  date: string | null
+  publisher: string | null
 }
 
 type Result =
@@ -66,8 +65,7 @@ export const fetchZennArticle = async (articleUrl: string): Promise<Result> => {
         logoUrl: result.data.logo.url,
         description: result.data.description,
         author: result.data.author,
-        publisher: result.data.publisher,
-        date: result.data.date
+        publisher: result.data.publisher
       }
     }
   } catch (err) {
